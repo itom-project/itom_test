@@ -580,6 +580,10 @@ IF(APPLE)
     COPY_TO_BUNDLE(${target_name} "${CMAKE_CURRENT_BINARY_DIR}/../designer" "designer")
     COPY_TO_BUNDLE(${target_name} "${CMAKE_CURRENT_BINARY_DIR}/../help" "help")
     COPY_TO_BUNDLE(${target_name} "${CMAKE_CURRENT_BINARY_DIR}/../demo" "../demo")
+
+    IF(NOT CMAKE_BUILD_TYPE MATCHES DEBUG)
+        add_custom_command(TARGET ${target_name} POST_BUILD COMMAND "python" "osx_bundle_maker.py" $<TARGET_FILE:${target_name}>)
+    ENDIF(NOT CMAKE_BUILD_TYPE MATCHES DEBUG)
 ELSE(APPLE)
     # Executable for WINDOWS and LINUX
     ADD_EXECUTABLE(${target_name} WIN32 ${qitom_SOURCES} ${qitom_HEADERS} ${qitom_HEADERS_NOMOC} ${qitom_HEADERS_MOC} ${qitom_ui_MOC} ${qitom_rcc_MOC} ${EXISTING_TRANSLATION_FILES} ${VERSION_DEPENCENDY} )

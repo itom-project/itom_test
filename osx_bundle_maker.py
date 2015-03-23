@@ -2,10 +2,6 @@
 
 '''
 This little script will copy binary runtime dependencies such as frameworks and dylibs into the application bundle.
-
-Date:		23.03.2015
-Author:		Jan Beneke <dev@janbeneke.de>
-License:	BSD
 '''
 from __future__ import print_function
 import glob
@@ -78,12 +74,15 @@ def makeBundle(path):
 		print(bcolors.WARNING+"No dependencies found"+bcolors.ENDC)
 		return 0
 
+	# # Remove framework dir
+	# if os.path.isdir(fwk_path):
+	# 	shutil.rmtree(fwk_path)
+	# 	print(bcolors.OKBLUE+'Framework directory removed'+bcolors.ENDC)
+	
 	# Make framework dir
-	if os.path.isdir(fwk_path):
-		shutil.rmtree(fwk_path)
-		print(bcolors.OKBLUE+'Framework directory removed'+bcolors.ENDC)
-	os.mkdir(fwk_path)
-	print(bcolors.OKBLUE+'Framework directory made'+bcolors.ENDC)
+	if not os.path.isdir(fwk_path):
+		os.mkdir(fwk_path)
+		print(bcolors.OKBLUE+'Framework directory made'+bcolors.ENDC)
 
 	# Loop files
 	offset = "                    "
@@ -214,6 +213,7 @@ if __name__ == '__main__':
 	print(bcolors.HEADER+''+bcolors.ENDC)
 	print(bcolors.HEADER+'Author: 	Jan Beneke <dev@janbeneke.de>'+bcolors.ENDC)
 	print(bcolors.HEADER+'Version:	1.0'+bcolors.ENDC)
+	print(bcolors.HEADER+'License:	BSD'+bcolors.ENDC)
 
 	nargs = len(sys.argv)
 	path = ''
