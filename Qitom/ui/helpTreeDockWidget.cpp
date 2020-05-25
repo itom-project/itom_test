@@ -573,7 +573,7 @@ ito::RetVal HelpTreeDockWidget::showFilterWidgetPluginHelp(const QString &filter
                             returnString += returnList.join(", ") + "] = ";
                         }
 
-                        QString newLink = QString("%1filter(\"%2\",%3)").arg(returnString).arg(fd->m_name).arg( paramList.join(", ") );
+                        QString newLink = QString("%1filter(\"%2\", %3)").arg(returnString).arg(fd->m_name).arg( paramList.join(", ") );
                         newLink.replace(",)",")");
                         QByteArray a = newLink.toLatin1();
 
@@ -619,7 +619,7 @@ ito::RetVal HelpTreeDockWidget::showFilterWidgetPluginHelp(const QString &filter
                         {
                             paramList.append(QLatin1String(p.getName()));
                         }
-                        QString newLink = QString("ui.createNewPluginWidget(\"%1\",%2)").arg(awd->m_name).arg( paramList.join(", ") );
+                        QString newLink = QString("ui.createNewPluginWidget(\"%1\", %2)").arg(awd->m_name).arg( paramList.join(", ") );
                         newLink.replace(",)", ")");
                         QByteArray a = newLink.toLatin1();
 
@@ -797,7 +797,7 @@ ito::RetVal HelpTreeDockWidget::showFilterWidgetPluginHelp(const QString &filter
                                 callName = tr("actuator");
                             }
 
-                            QString newLink = QString("%1(\"%2\",%3)").arg(callName).arg(aib->objectName()).arg( paramList.join(", ") );
+                            QString newLink = QString("%1(\"%2\", %3)").arg(callName).arg(aib->objectName()).arg( paramList.join(", ") );
                             newLink.replace(",)",")");
                             QByteArray a = newLink.toLatin1();
 
